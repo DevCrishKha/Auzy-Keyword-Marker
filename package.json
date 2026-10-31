@@ -1,0 +1,67 @@
+{
+  "name": "auzy-keyword-marker",
+  "displayName": "Auzy-Keyword-Marker",
+  "description": "Interactive code visualizer, variable wiring, and in-editor tutorial authoring tool",
+  "version": "0.1.0",
+  "publisher": "auzy",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./extension.js",
+  "scripts": {
+    "test": "node --test test/**/*.test.js"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Auzy-Keyword-Marker",
+      "properties": {
+        "auzyVisualizer.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Master switch to enable or disable Auzy-Keyword-Marker for this workspace."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "auzyVisualizer.markKeyword",
+        "title": "Mark the keyword"
+      },
+      {
+        "command": "auzyVisualizer.unmarkKeyword",
+        "title": "Unmark keyword"
+      },
+      {
+        "command": "auzyVisualizer.toggleActive",
+        "title": "Auzy: Toggle Visualizer for Current File"
+      },
+      {
+        "command": "auzyVisualizer.toggleWorkspace",
+        "title": "Auzy: Enable/Disable Visualizer for this Workspace"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "auzyVisualizer.markKeyword",
+          "group": "1_modification",
+          "when": "editorHasSelection && config.auzyVisualizer.enabled"
+        },
+        {
+          "command": "auzyVisualizer.unmarkKeyword",
+          "group": "1_modification",
+          "when": "editorTextFocus && config.auzyVisualizer.enabled"
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0"
+  }
+}
